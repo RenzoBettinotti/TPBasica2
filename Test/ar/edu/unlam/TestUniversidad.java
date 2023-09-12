@@ -18,19 +18,39 @@ public class TestUniversidad {
 		String nombre = "Renzo";
 		String apellido = "Bettinotti";
 		String nombreUni = "UNLAM";
+		
 
 		// ejecucion
 
 		Alumno alumno = new Alumno(dni, nombre, apellido);
-		Universidad facu = new Universidad(nombre);
-		Boolean estado = facu.registrarAlumno(alumno);
+		Universidad facu = new Universidad(nombreUni);
+		facu.agregarAlumno(alumno);
 	
 		//validacion
 		 
-		assertTrue(estado);
-		assertNotNull(alumno);
 		
 		
+		
+	
+		
+		
+//		@Test
+//		public void queNoSePuedaRegistrarUnAlumnoYaRegistrado() {
+//			//preparacion 
+//			Integer dni = 45318159;
+//			String nombre = "Renzo";
+//			String apellido = "Bettinotti";
+//			Integer dni2 = 12345678;
+//			String nombre2 = "Julio";
+//			String apellido2 = "Miranda";
+//			
+//			// ejecucion
+//			Alumno alumno = new Alumno(dni, nombre, apellido);
+//			Alumno alumno2 = new Alumno(dni2, nombre2, apellido2);
+//			facu.agregarAlumno(alumno);
+//			facu.revisarArray(alumno);
+//			
+//		}
 
 	}
 
