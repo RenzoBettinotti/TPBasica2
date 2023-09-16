@@ -6,7 +6,8 @@ import java.util.Iterator;
 public class Universidad {
 
 	private String nombre;
-	private ArrayList<Alumno> alumnos = new ArrayList<Alumno>(10);
+	private ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+	private ArrayList<Docente> docentes = new ArrayList<Docente>();
 	private Alumno alumno;
 
 	public Universidad(String nombre) {
@@ -18,7 +19,7 @@ public class Universidad {
 		Boolean estado = false;
 		this.alumnos.add(alumno);
 		buscarAlumno(alumno);
-		if (buscarAlumno(alumno).equals(true)) {
+		if (buscarAlumno(alumno).equals(alumno)) {
 			estado = true;;
 			alumno.setFechaIngreso("14/9/2023");
 		}
@@ -61,14 +62,25 @@ public class Universidad {
 		this.alumnos = alumnos;
 	}
 
-	public Boolean buscarAlumno(Alumno alumno) {
-		Boolean resultado = false;
+	public Alumno buscarAlumno(Alumno alumno) {
+		Alumno resultado = null;
 		for (int i = 0; i < alumnos.size(); i++) {
 			alumnos.get(i).equals(alumno.getDni());
-			resultado = true;
+			resultado = alumnos.get(i);
 			
 		}
 		return resultado;
+	}
+	
+	public Boolean agregarDocentes(Docente docente, Docente docente2) {
+		Boolean estado = false;
+		this.docentes.add(docente);
+		estado = true;
+		if(this.docentes.equals(docente2)) {
+			estado = false;
+		}
+		
+		return estado;
 	}
 
 }
