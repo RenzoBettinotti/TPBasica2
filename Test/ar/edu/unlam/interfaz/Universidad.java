@@ -20,23 +20,23 @@ public class Universidad {
 		LocalDate ingreso = LocalDate.now();
 
 		this.alumnos.add(alumno);
-
 		alumno.setFechaIngreso(ingreso);
+		
+		
 
 	}
 
-	public Boolean revisarArray(Alumno alumno) {
+	public Boolean revisarArray(Alumno alumnoR, Alumno alumnoN) {
 		Boolean estado = false;
-		String placeHolder= null;
-		for (int i = 0; i < alumnos.size(); i++) {
-			if ( alumnos.get(i).getNombre().equals(alumno.getNombre())) {
-				estado = true;
-				placeHolder = alumno.getNombre();
-				if(placeHolder.equals(alumnos.get(i).getNombre())) {
-					estado = false;
-				}
-			} 
-		}
+		LocalDate ingreso = LocalDate.now();
+		if (buscarAlumno(alumnoR).equals(alumnoN.getDni())) {
+			 estado = false;
+		} else {
+			agregarUnAlumno(alumnoN);
+			estado = true;
+			alumnoN.setFechaIngreso(ingreso);
+		} 
+			
 
 		return estado;
 
@@ -66,11 +66,11 @@ public class Universidad {
 		this.alumnos = alumnos;
 	}
 
-	public Alumno buscarAlumno(Alumno alumno) {
-		Alumno resultado = null;
+	public Integer buscarAlumno(Alumno alumno) {
+		Integer resultado = 0;
 		for (int i = 0; i < alumnos.size(); i++) {
 			alumnos.get(i).equals(alumno.getDni());
-			resultado = alumnos.get(i);
+			resultado = alumnos.get(i).getDni();
 
 		}
 		return resultado;

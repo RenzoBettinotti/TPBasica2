@@ -64,8 +64,7 @@ public class TestUniversidad {
 		// ejecucion
 
 		facu.agregarUnAlumno(alumno);
-		facu.agregarUnAlumno(alumno);
-		estado = facu.revisarArray(alumno);
+		estado = facu.revisarArray(alumno, alumno2);
 //		estado2 = facu.revisarArray(alumno2);
 		 
 		LocalDate ve = LocalDate.now();
@@ -74,9 +73,9 @@ public class TestUniversidad {
 
 		// validacion
 		assertEquals(ve, vo);
-//		assertEquals(ve, vo2);
+		assertEquals(ve, vo2);
 		assertTrue(estado);
-//		assertTrue(estado2);
+
 	}
 
 	@Test
