@@ -2,6 +2,7 @@ package ar.edu.unlam.interfaz;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.time.*;
 
 public class Universidad {
 
@@ -15,23 +16,26 @@ public class Universidad {
 
 	}
 
-	public Boolean agregarUnAlumno(Alumno alumno) {
-		Boolean estado = false;
+	public void agregarUnAlumno(Alumno alumno) {
+		LocalDate ingreso = LocalDate.now();
+
 		this.alumnos.add(alumno);
-		buscarAlumno(alumno);
-		if (buscarAlumno(alumno).equals(alumno)) {
-			estado = true;;
-			alumno.setFechaIngreso("14/9/2023");
-		}
-		return estado;
+
+		alumno.setFechaIngreso(ingreso);
+
 	}
 
 	public Boolean revisarArray(Alumno alumno) {
 		Boolean estado = false;
+		String placeHolder= null;
 		for (int i = 0; i < alumnos.size(); i++) {
-			if (alumnos.get(i).getNombre().equals(alumno.getNombre())) {
-				estado = false;
-			}
+			if ( alumnos.get(i).getNombre().equals(alumno.getNombre())) {
+				estado = true;
+				placeHolder = alumno.getNombre();
+				if(placeHolder.equals(alumnos.get(i).getNombre())) {
+					estado = false;
+				}
+			} 
 		}
 
 		return estado;
@@ -67,19 +71,19 @@ public class Universidad {
 		for (int i = 0; i < alumnos.size(); i++) {
 			alumnos.get(i).equals(alumno.getDni());
 			resultado = alumnos.get(i);
-			
+
 		}
 		return resultado;
 	}
-	
+
 	public Boolean agregarDocentes(Docente docente, Docente docente2) {
 		Boolean estado = false;
 		this.docentes.add(docente);
 		estado = true;
-		if(this.docentes.equals(docente2)) {
+		if (this.docentes.equals(docente2)) {
 			estado = false;
 		}
-		
+
 		return estado;
 	}
 

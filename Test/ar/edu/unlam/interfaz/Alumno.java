@@ -1,12 +1,14 @@
 package ar.edu.unlam.interfaz;
 
+import java.time.*;
+
 public class Alumno {
 
 	private Integer dni;
 	private String nombre;
 	private String apellido;
 	private String fechaDeNacimiento;
-	private String fechaIngreso;
+	private LocalDate fechaIngreso;
 
 	public Alumno() {
 
@@ -51,11 +53,11 @@ public class Alumno {
 		this.fechaDeNacimiento = fechaDeNacimiento;
 	}
 
-	public String getFechaIngreso() {
+	public LocalDate getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(String fechaIngreso) {
+	public void setFechaIngreso(LocalDate fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 

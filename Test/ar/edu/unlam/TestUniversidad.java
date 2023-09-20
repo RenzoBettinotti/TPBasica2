@@ -3,6 +3,7 @@ package ar.edu.unlam;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import java.time.*;
 
 import ar.edu.unlam.interfaz.Alumno;
 import ar.edu.unlam.interfaz.Aula;
@@ -31,8 +32,8 @@ public class TestUniversidad {
 		facu.agregarUnAlumno(alumno);
 		String ve = "Renzo";
 		String vo = alumno.getNombre();
-		String ve2 = "14/9/2023";
-		String vo2 = alumno.getFechaIngreso();
+		LocalDate ve2 = LocalDate.now();
+		LocalDate vo2 = alumno.getFechaIngreso();
 
 		// validacion
 		assertEquals(ve, vo);
@@ -58,18 +59,24 @@ public class TestUniversidad {
 		String nombreUni = "UNLAM";
 		Universidad facu = new Universidad(nombreUni);
 		Boolean estado;
+		Boolean estado2;
 
 		// ejecucion
 
 		facu.agregarUnAlumno(alumno);
+		facu.agregarUnAlumno(alumno);
 		estado = facu.revisarArray(alumno);
-		String ve = "14/9/2023";
-		String vo = alumno.getFechaIngreso();
-		String vo2 = alumno2.getFechaIngreso();
+//		estado2 = facu.revisarArray(alumno2);
+		 
+		LocalDate ve = LocalDate.now();
+		LocalDate vo = alumno.getFechaIngreso();
+		LocalDate vo2 = alumno2.getFechaIngreso();
 
 		// validacion
 		assertEquals(ve, vo);
-		assertFalse(estado);
+//		assertEquals(ve, vo2);
+		assertTrue(estado);
+//		assertTrue(estado2);
 	}
 
 	@Test
