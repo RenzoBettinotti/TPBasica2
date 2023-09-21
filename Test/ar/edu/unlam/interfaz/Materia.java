@@ -7,6 +7,7 @@ public class Materia {
 	private String nombre;
 	private Integer id;
 	private ArrayList<Materia> correlativas;
+	
 
 	public Materia() {
 
@@ -51,4 +52,29 @@ public class Materia {
 		return estado;
 	}
 
+	public Integer getCorrelativa() {
+		Integer correlativa = 0;
+		for( int i = 0; i< correlativas.size(); i++) {
+		correlativa = correlativas.get(i).getId();
+		}
+		
+		return correlativa;
+		
+	}
+
+	public Boolean eliminarCorrelativa( Integer idC) {
+		boolean estado = false;
+		for( int i = 0; i< correlativas.size(); i++) {
+			if ( correlativas.get(i).getId().equals(idC)) {
+				this.correlativas.remove(i);
+				estado = true;
+				break;
+			} else {
+				estado = false;
+			} 
+		}
+		return estado;
+		
+	}
+	
 }

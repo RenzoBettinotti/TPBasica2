@@ -13,6 +13,8 @@ import ar.edu.unlam.interfaz.Universidad;
 
 public class TestUniversidad {
 
+	// Alumno
+
 	@Test
 	public void queSePuedaRegistrarUnAlumno() {
 
@@ -78,6 +80,7 @@ public class TestUniversidad {
 
 	}
 
+	// Materia
 	@Test
 	public void queSePuedaCrearUnaMateriaConSusCorrelativas() {
 
@@ -90,18 +93,56 @@ public class TestUniversidad {
 		Materia pb1 = new Materia(nombre, id);
 
 		String nombreC = "Programacion basica 2";
-		Integer idC = 015;
+		Integer idC = 013;
 		Materia pb2 = new Materia(nombreC, idC);
 
 		Boolean estado = false;
+		Boolean estadoM = false;
+
+		Integer ve = 013;
+		Integer vo = 0;
 
 		// ejecucion
+		facu.agregarMaterias(pb1);
 		estado = pb1.agregarCorrelativa(pb2);
+		estadoM = facu.verificacionMateria(idC, pb2);
+		vo = pb1.getCorrelativa();
 
 		// validacion
 
 		assertTrue(estado);
+		assertTrue(estadoM);
+		assertEquals(ve, vo);
+
 	}
+
+	@Test
+	public void queSePuedaEliminarUnaCorrelativa() {
+		String nombreUni = "UNLAM";
+		Universidad facu = new Universidad(nombreUni);
+
+		String nombre = "Programacion Basica 1";
+		Integer id = 014;
+		Materia pb1 = new Materia(nombre, id);
+
+		String nombreC = "Programacion basica 2";
+		Integer idC = 015;
+		Materia pb2 = new Materia(nombreC, idC);
+
+		Boolean estado1 = false;
+		Boolean estado2 = false;
+		Boolean estado3 = false;
+
+		facu.agregarMaterias(pb1);
+		estado1 = pb1.agregarCorrelativa(pb2);
+		estado2 = facu.verificacionMateria(idC, pb2);
+		estado3 = pb1.eliminarCorrelativa(idC);
+
+		assertTrue(estado1);
+		assertTrue(estado2);
+		assertTrue(estado3);
+	}
+	// Docente
 
 	@Test
 	public void queSePuedanAgregarDocentes() {
@@ -132,6 +173,8 @@ public class TestUniversidad {
 
 	}
 
+	// Comision
+
 	@Test
 	public void queSePuedaCrearUnaAula() {
 
@@ -148,13 +191,5 @@ public class TestUniversidad {
 		Integer codigo = 4421;
 
 	}
-
-//	@Test 
-//	public void queLosAlumnosSePuedanInscribirEnLasMaterias() {
-//		
-//		// preparacion
-//		
-//		
-//	}
 
 }
