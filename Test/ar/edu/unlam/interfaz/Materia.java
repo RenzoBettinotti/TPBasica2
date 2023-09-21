@@ -4,16 +4,14 @@ import java.util.ArrayList;
 
 public class Materia {
 
-	
-	private String nombre ;
+	private String nombre;
 	private Integer id;
-	private ArrayList <Materia> correlativas;
-	
-	
-	public Materia () {
-		
+	private ArrayList<Materia> correlativas;
+
+	public Materia() {
+
 	}
-	
+
 	public Materia(String nombre, Integer id) {
 		this.nombre = nombre;
 		this.id = id;
@@ -43,7 +41,7 @@ public class Materia {
 	public void setCorrelativas(ArrayList<Materia> correlativas) {
 		this.correlativas = correlativas;
 	}
-	
+
 	public Boolean agregarCorrelativa(Materia correlativa) {
 		Boolean estado = false;
 		if (this.id != correlativa.getId()) {
@@ -52,6 +50,5 @@ public class Materia {
 		}
 		return estado;
 	}
-	
 
 }

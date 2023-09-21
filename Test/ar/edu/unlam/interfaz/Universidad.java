@@ -21,8 +21,6 @@ public class Universidad {
 
 		this.alumnos.add(alumno);
 		alumno.setFechaIngreso(ingreso);
-		
-		
 
 	}
 
@@ -30,13 +28,12 @@ public class Universidad {
 		Boolean estado = false;
 		LocalDate ingreso = LocalDate.now();
 		if (buscarAlumno(alumnoR).equals(alumnoN.getDni())) {
-			 estado = false;
+			estado = false;
 		} else {
 			agregarUnAlumno(alumnoN);
 			estado = true;
 			alumnoN.setFechaIngreso(ingreso);
-		} 
-			
+		}
 
 		return estado;
 

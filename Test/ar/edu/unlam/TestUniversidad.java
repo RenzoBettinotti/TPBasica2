@@ -66,7 +66,7 @@ public class TestUniversidad {
 		facu.agregarUnAlumno(alumno);
 		estado = facu.revisarArray(alumno, alumno2);
 //		estado2 = facu.revisarArray(alumno2);
-		 
+
 		LocalDate ve = LocalDate.now();
 		LocalDate vo = alumno.getFechaIngreso();
 		LocalDate vo2 = alumno2.getFechaIngreso();
@@ -131,25 +131,22 @@ public class TestUniversidad {
 		assertTrue(estado);
 
 	}
-	
-	
+
 	@Test
 	public void queSePuedaCrearUnaAula() {
-		
+
 		Integer numero = 271;
 		Aula aula = new Aula(numero);
-		
+
 	}
-	
-	
-	@Test 
+
+	@Test
 	public void queSePuedaCrearUnaComision() {
-		
+
 		// preparacion
-		
+
 		Integer codigo = 4421;
-		
-		
+
 	}
 
 //	@Test 

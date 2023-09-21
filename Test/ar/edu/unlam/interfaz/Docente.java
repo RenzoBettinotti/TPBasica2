@@ -1,8 +1,7 @@
 package ar.edu.unlam.interfaz;
 
 public class Docente {
-	
-	
+
 	private String nombre;
 	private String apellido;
 	private Integer dni;
@@ -36,7 +35,5 @@ public class Docente {
 	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
-	
-	
-	
+
 }
