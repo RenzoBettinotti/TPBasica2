@@ -9,7 +9,7 @@ public class Universidad {
 	private String nombre;
 	private ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 	private ArrayList<Docente> docentes = new ArrayList<Docente>();
-	private ArrayList<Materia> materias = new ArrayList <Materia>();
+	private ArrayList<Materia> materias = new ArrayList<Materia>();
 	private Alumno alumno;
 
 	public Universidad(String nombre) {
@@ -85,20 +85,20 @@ public class Universidad {
 
 		return estado;
 	}
-	
+
 	public void agregarMaterias(Materia materia) {
 		materias.add(materia);
-		
+
 	}
-	
-	public Boolean verificacionMateria (Integer id, Materia materia) {
+
+	public Boolean verificacionMateria(Integer id, Materia materia) {
 		Boolean estado = false;
-		for(int i = 0; i<materias.size(); i++) {
-			if(this.materias.get(i).getId() !=id ) {
+		for (int i = 0; i < materias.size(); i++) {
+			if (this.materias.get(i).getId() != id) {
 				estado = true;
 				materias.add(materia);
 				break;
-			}else {
+			} else {
 				estado = false;
 			}
 		}

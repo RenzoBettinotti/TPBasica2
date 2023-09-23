@@ -32,9 +32,10 @@ public class CicloLectivo {
 		return estado;
 	}
 
-	public void inicioCursada(LocalDate inicio) {
+	public void inicioCursada(LocalDate inicio, DuracionCiclo duracion) {
 		this.fechaInicioCicloLectivo = inicio;
 		this.fechaFinalizacionCicloLectivo = this.fechaInicioCicloLectivo.plusMonths(3);
+		this.duracion = duracion;
 
 	}
 
