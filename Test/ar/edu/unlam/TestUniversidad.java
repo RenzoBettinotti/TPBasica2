@@ -15,6 +15,7 @@ import ar.edu.unlam.interfaz.Universidad;
 import ar.edu.unlam.interfaz.CicloLectivo;
 import ar.edu.unlam.interfaz.Comision;
 import ar.edu.unlam.interfaz.DuracionCiclo;
+import ar.edu.unlam.interfaz.Estado;
 import ar.edu.unlam.interfaz.Dia;
 import ar.edu.unlam.interfaz.Hora;
 
@@ -188,6 +189,18 @@ public class TestUniversidad {
 		Integer numero = 271;
 		Aula aula = new Aula(numero);
 
+		String nombreD = "Pablo";
+		String apellidoD = "Manolo";
+		Integer dniD = 44444444;
+		Docente profe1 = new Docente(nombreD, apellidoD, dniD);
+
+		String nombreD2 = "Juan";
+		String apellidoD2 = "Carlos";
+		Integer dniD2 = 44444445;
+		Docente profe2 = new Docente(nombreD2, apellidoD2, dniD2);
+
+		aula.agregarUnDocente(profe1, profe2);
+
 	}
 
 	@Test
@@ -196,11 +209,72 @@ public class TestUniversidad {
 		// preparacion
 
 		Boolean estado = false;
-		Boolean estado2 = false;
-		Boolean estado3 = false;
-		Boolean estado4 = false;
-		Boolean estado5 = false;
-		Boolean estado6 = false;
+
+		// AULA
+
+		Integer numero = 271;
+		Aula aula = new Aula(numero);
+
+		// ALUMNO
+
+		Integer dni = 45318159;
+		String nombre = "Renzo";
+		String apellido = "Bettinotti";
+
+		String fechaNacimiento = "16/03/2004";
+		Alumno alumno = new Alumno(dni, nombre, apellido, fechaNacimiento);
+
+		// DOCENTE
+
+		String nombreD = "Pablo";
+		String apellidoD = "Manolo";
+		Integer dniD = 44444444;
+		Docente profe1 = new Docente(nombreD, apellidoD, dniD);
+
+		// CICLO Y TURNO
+
+		Integer ID = 12;
+		LocalDate inscripcion = LocalDate.of(2023, 9, 23);
+		LocalDate hoy = LocalDate.now();
+		CicloLectivo duracion = new CicloLectivo(ID, inscripcion, hoy);
+
+		Integer ID2 = 13;
+		CicloLectivo duracion2 = new CicloLectivo(ID2, inscripcion, hoy);
+
+		Hora hora = Hora.DE_8_A_12;
+		Dia dia = Dia.LUNES_Y_MIERCOLES;
+
+		Turno turno = new Turno(hora, dia);
+
+		// MATERIA
+
+		String nombre2 = "Programacion Basica 2";
+		Integer id = 014;
+		Materia pb2 = new Materia(nombre2, id);
+
+		// COMISION
+
+		Integer codigo = 4421;
+		Comision comision = new Comision(codigo, pb2, turno, aula);
+
+		comision.asignarCiclo(duracion);
+		estado = comision.revisarCiclo(duracion, duracion2);
+		comision.asignarMateria(pb2);
+
+		comision.asignarTurno(turno);
+		comision.agregarUnAlumno(alumno);
+
+		comision.agregarUnDocente(profe1);
+
+		assertNotNull(comision);
+		assertTrue(estado);
+
+	}
+
+	@Test
+	public void queNoSePuedaAgregarUnMismoAlumnoAUnaComision() {
+
+		Boolean estado = false;
 
 		// ALUMNO
 
@@ -217,6 +291,58 @@ public class TestUniversidad {
 
 		String fechaNacimiento2 = "15/03/2004";
 		Alumno alumno2 = new Alumno(dni2, nombreA, apellidoA, fechaNacimiento2);
+
+		// AULA
+
+		Integer numero = 271;
+		Aula aula = new Aula(numero);
+
+		// DOCENTE
+
+		String nombreD = "Pablo";
+		String apellidoD = "Manolo";
+		Integer dniD = 44444444;
+		Docente profe1 = new Docente(nombreD, apellidoD, dniD);
+
+		// CICLO Y TURNO
+
+		Integer ID = 12;
+		LocalDate inscripcion = LocalDate.of(2023, 9, 23);
+		LocalDate hoy = LocalDate.now();
+		CicloLectivo duracion = new CicloLectivo(ID, inscripcion, hoy);
+
+		Integer ID2 = 13;
+		CicloLectivo duracion2 = new CicloLectivo(ID2, inscripcion, hoy);
+
+		Hora hora = Hora.DE_8_A_12;
+		Dia dia = Dia.LUNES_Y_MIERCOLES;
+
+		Turno turno = new Turno(hora, dia);
+
+		// MATERIA
+
+		String nombre2 = "Programacion Basica 2";
+		Integer id = 014;
+		Materia pb2 = new Materia(nombre2, id);
+
+		// COMISION
+
+		Integer codigo = 4421;
+		Comision comision = new Comision(codigo, pb2, turno, aula);
+
+		comision.agregarUnAlumno(alumno);
+		estado = comision.revisarAlumno(alumno, alumno2);
+
+		assertTrue(estado);
+	}
+
+	public void queNoSePuedaAgregarUnMismoDocenteAUnaComision() {
+
+		Boolean estado = false;
+		// AULA
+
+		Integer numero = 271;
+		Aula aula = new Aula(numero);
 
 		// DOCENTE
 
@@ -245,6 +371,54 @@ public class TestUniversidad {
 
 		Turno turno = new Turno(hora, dia);
 
+		// MATERIA
+
+		String nombre2 = "Programacion Basica 2";
+		Integer id = 014;
+		Materia pb2 = new Materia(nombre2, id);
+
+		// COMISION
+
+		Integer codigo = 4421;
+		Comision comision = new Comision(codigo, pb2, turno, aula);
+
+		comision.agregarUnDocente(profe1);
+		estado = comision.revisarDocente(profe1, profe2);
+
+		assertTrue(estado);
+
+	}
+
+	@Test
+	public void queNoSePuedaAgregarUnMismoCicloAUnaComision() {
+		Boolean estado = false;
+		// AULA
+
+		Integer numero = 271;
+		Aula aula = new Aula(numero);
+
+		// DOCENTE
+
+		String nombreD = "Pablo";
+		String apellidoD = "Manolo";
+		Integer dniD = 44444444;
+		Docente profe1 = new Docente(nombreD, apellidoD, dniD);
+
+		// CICLO Y TURNO
+
+		Integer ID = 12;
+		LocalDate inscripcion = LocalDate.of(2023, 9, 23);
+		LocalDate hoy = LocalDate.now();
+		CicloLectivo duracion = new CicloLectivo(ID, inscripcion, hoy);
+
+		Integer ID2 = 13;
+		CicloLectivo duracion2 = new CicloLectivo(ID2, inscripcion, hoy);
+
+		Hora hora = Hora.DE_8_A_12;
+		Dia dia = Dia.LUNES_Y_MIERCOLES;
+
+		Turno turno = new Turno(hora, dia);
+
 		Hora hora2 = Hora.DE_12_A_2;
 		Dia dia2 = Dia.MARTES_Y_VIERNES;
 
@@ -256,41 +430,73 @@ public class TestUniversidad {
 		Integer id = 014;
 		Materia pb2 = new Materia(nombre2, id);
 
+		// COMISION
+
+		Integer codigo = 4421;
+		Comision comision = new Comision(codigo, pb2, turno, aula);
+
+		comision.asignarTurno(turno);
+		estado = comision.revisarTurno(turno, turno2);
+
+		assertTrue(estado);
+	}
+
+	@Test
+	public void queNoSePuedaAgregarUnaMismaMateriaAUnaComision() {
+		Boolean estado = false;
+		// AULA
+
+		Integer numero = 271;
+		Aula aula = new Aula(numero);
+
+		// DOCENTE
+
+		String nombreD = "Pablo";
+		String apellidoD = "Manolo";
+		Integer dniD = 44444444;
+		Docente profe1 = new Docente(nombreD, apellidoD, dniD);
+
+		// CICLO Y TURNO
+
+		Integer ID = 12;
+		LocalDate inscripcion = LocalDate.of(2023, 9, 23);
+		LocalDate hoy = LocalDate.now();
+		CicloLectivo duracion = new CicloLectivo(ID, inscripcion, hoy);
+
+		Integer ID2 = 13;
+		CicloLectivo duracion2 = new CicloLectivo(ID2, inscripcion, hoy);
+
+		Hora hora = Hora.DE_8_A_12;
+		Dia dia = Dia.LUNES_Y_MIERCOLES;
+
+		Turno turno = new Turno(hora, dia);
+
+		// MATERIA
+
+		String nombre2 = "Programacion Basica 2";
+		Integer id = 014;
+		Materia pb2 = new Materia(nombre2, id);
+
 		String nombre3 = "Programacion Basica 1";
 		Integer id2 = 015;
 		Materia pb1 = new Materia(nombre3, id2);
 
-		// FACULTAD
+//		// FACULTAD
 
 		String nombreUni = "UNLAM";
 		Universidad facu = new Universidad(nombreUni);
-		facu.agregarUnAlumno(alumno);
 		facu.agregarMaterias(pb2);
-		estado6 = pb2.agregarCorrelativa(pb1);
+		pb2.agregarCorrelativa(pb1);
 
 		// COMISION
 
 		Integer codigo = 4421;
-		Comision comision = new Comision(codigo, pb2, turno);
+		Comision comision = new Comision(codigo, pb2, turno, aula);
 
-		comision.asignarCiclo(duracion);
-		estado = comision.revisarCiclo(duracion, duracion2);
 		comision.asignarMateria(pb2);
-		estado2 = comision.revisarMateria(pb2, pb1);
-		comision.asignarTurno(turno);
-		estado3 = comision.revisarTurno(turno, turno2);
-		comision.agregarUnAlumno(alumno);
-		estado4 = comision.revisarAlumno(alumno, alumno2);
-		comision.agregarUnDocente(profe1);
-		estado5 = comision.revisarDocente(profe1, profe2);
+		estado = comision.revisarMateria(pb2, pb1);
 
-		assertNotNull(comision);
 		assertTrue(estado);
-		assertTrue(estado2);
-		assertTrue(estado3);
-		assertTrue(estado4);
-		assertTrue(estado5);
-		assertTrue(estado6);
 
 	}
 
@@ -299,34 +505,68 @@ public class TestUniversidad {
 	@Test
 	public void queSePuedaRegistrarNotasDeUnAlumno() {
 
-		// COMISION
+		Boolean estado = false;
+		Boolean estado2 = false;
+		Boolean estadoFinal = false;
 
-		String nombre2 = "Programacion Basica 2";
+		// AULA
+
+		Integer numero = 271;
+		Aula aula = new Aula(numero);
+
+		// MATERIA
+
+		String nombre = "Programacion Basica 2";
 		Integer id = 014;
-		Materia pb2 = new Materia(nombre2, id);
+		Materia pb2 = new Materia(nombre, id);
 
+		String nombre2 = "Programacion Basica 1";
+		Integer id2 = 013;
+		Materia pb1 = new Materia(nombre2, id2);
+
+		pb1.setEstado(Estado.DESAPROBADO);
+		pb2.agregarCorrelativa(pb1);
+
+		// COMISION
 		Hora hora = Hora.DE_8_A_12;
 		Dia dia = Dia.LUNES_Y_MIERCOLES;
 
 		Turno turno = new Turno(hora, dia);
 
 		Integer codigo = 4421;
-		Comision comision = new Comision(codigo, pb2, turno);
+		Comision comision = new Comision(codigo, pb2, turno, aula);
 
 		// ALUMNO
 
 		Integer dni = 45318159;
-		String nombre = "Renzo";
+		String nombreAlumno = "Renzo";
 		String apellido = "Bettinotti";
 
 		String fechaNacimiento = "16/03/2004";
-		Alumno alumno = new Alumno(dni, nombre, apellido, fechaNacimiento);
+		Alumno alumno = new Alumno(dni, nombreAlumno, apellido, fechaNacimiento);
 
 		// NOTA
 
-		Integer nota = 6;
-		Nota notaAlumno = new Nota(nota);
+		Integer nota1 = 3;
+		Integer nota2 = 7;
+		Integer notaFinal = 5;
+		Nota notaAlumno = new Nota();
+		nota1 = pb2.verificarEstado(nota1);
+		estado = notaAlumno.verificarNota(nota1);
+		notaAlumno.asignarNotaPrimerParcial(nota1);
 
+		nota1 = pb2.rendirRecuperatorio();
+		notaAlumno.asignarNotaPrimerParcial(nota1);
+
+		nota2 = pb2.verificarEstado(nota2);
+		estado2 = notaAlumno.verificarNota(nota2);
+		notaAlumno.asignarNotaSegundoParcial(nota2);
+
+		estadoFinal = notaAlumno.asignarNotaFinal(notaFinal);
+
+		assertTrue(estado);
+		assertTrue(estado2);
+		assertTrue(estadoFinal);
 	}
 
 }

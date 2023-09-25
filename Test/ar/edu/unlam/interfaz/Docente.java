@@ -12,6 +12,10 @@ public class Docente {
 		this.dni = dni;
 	}
 
+	public Docente() {
+
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

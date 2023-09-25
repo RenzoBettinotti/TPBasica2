@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Comision {
 
+	private Aula aula;
 	private Integer id;
 	private Materia materia;
 //	private CicloLectivo duracion;
@@ -15,10 +16,11 @@ public class Comision {
 	private ArrayList<Alumno> alumnos;
 	private ArrayList<Docente> docentes;
 
-	public Comision(Integer codigo, Materia pb1, Turno turno) {
+	public Comision(Integer codigo, Materia pb1, Turno turno, Aula aula) {
 		this.id = codigo;
 		this.materia = pb1;
 		this.turno = turno;
+		this.aula = aula;
 		ciclos = new ArrayList<CicloLectivo>();
 		materias = new ArrayList<Materia>();
 		turnos = new ArrayList<Turno>();
